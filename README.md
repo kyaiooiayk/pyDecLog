@@ -1,5 +1,5 @@
 # pyDecLog
-PyDecLog: a python package for logging via decorators 
+PyDecLog: a python package for logging via decorators
 ***
 
 ## Available decorators
@@ -8,5 +8,3 @@ PyDecLog: a python package for logging via decorators
 - `loginput`: log the input value
 - `logoutput`: log the output
 ***
-
-
