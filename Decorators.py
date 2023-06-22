@@ -1,9 +1,6 @@
 import functools
-import itertools
 import logging
 import os
-import shutil
-
 import time
 from contextlib import redirect_stdout
 from io import StringIO
@@ -12,11 +9,19 @@ import inspect
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_DIR = "./"
-# It is assume the console level will be printed only for critical component
+# It is assumed the console level will be printed only for critical component
 CONSOLE_LOG_LEVEL = "critical"
 
 
 def lprint(console_log_level="info"):
+    """Special version of print for logging.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
     logger_obj = get_logger(
         log_file_name=LOG_FILE_NAME,
         log_dir=LOG_FILE_DIR,
@@ -26,6 +31,15 @@ def lprint(console_log_level="info"):
 
 
 def _get_time(t_start, t_end, unit):
+    """Get elapsed time given the unit.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+
     if unit.lower() == "sec":
         return np.around(t_end - t_start, 3)
 
@@ -34,10 +48,13 @@ def _get_time(t_start, t_end, unit):
 
     elif unit.lower() == "hr":
         return np.around((t_end - t_start) / 3600, 3)
+    else:
+        raise TypeError(f"Unit of time {unit} not known!")
 
 
 def timing(unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL):
-    """Timer decorator
+    """Timer decorator.
+
     Time the execution time of the passed in function.
     """
 
@@ -48,12 +65,15 @@ def timing(unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL):
             result = func(self, *args, **kwargs)
             t2 = time.time()
 
-            log_level = _get_log_level(level, console_log_level=console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level=console_log_level
+            )
 
             log_level(
                 str(func.__name__)
                 + " was executed in: "
                 + str(_get_time(t1, t2, unit))
+                + " "
                 + unit
             )
             return result
@@ -64,7 +84,7 @@ def timing(unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
 
 def message(level="info", console_log_level=CONSOLE_LOG_LEVEL):
-    """Control print messages
+    """Control print messages.
 
     Takes care of both the dumped .log file
     and the console ouput. The rule used here is as follows:
@@ -84,13 +104,14 @@ def message(level="info", console_log_level=CONSOLE_LOG_LEVEL):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(self, *args, **kwargs):
-            logger_obj = get_logger(log_file_name=LOG_FILE_NAME, log_dir=LOG_FILE_DIR)
 
             s = StringIO()
             with redirect_stdout(s):
                 result = func(self, *args, **kwargs)
 
-            log_level = _get_log_level(level, console_log_level=console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level=console_log_level
+            )
             for i in s.getvalue().split("\n"):
                 if i:
                     log_level(i)
@@ -127,7 +148,14 @@ def _get_log_level(level, console_log_level):
 
 
 def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
-    """Fwt function signature"""
+    """Get function signature.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
 
     def decorator(func):
         @functools.wraps(func)
@@ -135,7 +163,7 @@ def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
             log_level = _get_log_level(level, console_log_level)
 
             log_level("Method's name: " + func.__name__)
-            log_level("Method's singature:" + str(inspect.signature(func)))
+            log_level("Method's signature:" + str(inspect.signature(func)))
 
             # Call the function as usual
             value = func(*args, **kwargs)
@@ -148,7 +176,7 @@ def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
 
 def arguments(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
-    """Control print messages
+    """Get args and kwargs.
 
     Takes care of both the dumped .log file
     and the console ouput. The rule used here is as follows:
@@ -184,8 +212,37 @@ def arguments(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     return decorator
 
 
+def description(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+    """Get function description.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            log_level = _get_log_level(level, console_log_level)
+
+            log_level("Method's description: " + func.__doc__)
+
+            # Call the function as usual
+            value = func(*args, **kwargs)
+
+            return value
+
+        return wrapper
+
+    return decorator
+
+
 def get_logger(
-    log_file_name="LOG", log_dir=LOG_FILE_DIR, console_log_level=CONSOLE_LOG_LEVEL
+    log_file_name="LOG",
+    log_dir=LOG_FILE_DIR,
+    console_log_level=CONSOLE_LOG_LEVEL,
 ):
     """Creates a Log File and returns Logger object
 
