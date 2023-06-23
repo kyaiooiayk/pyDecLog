@@ -9,3 +9,7 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 - `@arguments`: get functions's args and kwargs
 - `@Description`: get functions's output of the `__doc__` dunder method
 ***
+
+## References
+- [Decorators with parameters?](https://stackoverflow.com/questions/5929107/decorators-with-parameters)
+***
