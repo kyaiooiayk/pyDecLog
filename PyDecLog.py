@@ -6,6 +6,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 import numpy as np
 import inspect
+from sys import getsizeof
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_DIR = "./"
@@ -68,7 +69,7 @@ def timing(
         @wraps(func)
         def wrapper(self, *args, **kwargs):
             t1 = time.time()
-            result = func(self, *args, **kwargs)
+            output = func(self, *args, **kwargs)
             t2 = time.time()
 
             log_level = _get_log_level(
@@ -82,7 +83,7 @@ def timing(
                 + " "
                 + unit
             )
-            return result
+            return output
 
         return wrapper
 
@@ -118,7 +119,7 @@ def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
 
             s = StringIO()
             with redirect_stdout(s):
-                result = func(self, *args, **kwargs)
+                output = func(self, *args, **kwargs)
 
             log_level = _get_log_level(
                 level, console_log_level=console_log_level
@@ -127,7 +128,7 @@ def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
                 if i:
                     log_level(i)
 
-            return result
+            return output
 
         return wrapper
 
@@ -182,9 +183,9 @@ def signature(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
             log_level("Method's signature:" + str(inspect.signature(func)))
 
             # Call the function as usual
-            value = func(*args, **kwargs)
+            output = func(*args, **kwargs)
 
-            return value
+            return output
 
         return wrapper
 
@@ -225,9 +226,9 @@ def arguments(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
             log_level("Method's kwargs: {}".format(kwargs))
 
             # Call the function as usual
-            value = func(*args, **kwargs)
+            output = func(*args, **kwargs)
 
-            return value
+            return output
 
         return wrapper
 
@@ -259,9 +260,127 @@ def description(
             log_level("Method's description: " + func.__doc__)
 
             # Call the function as usual
-            value = func(*args, **kwargs)
+            output = func(*args, **kwargs)
 
-            return value
+            return output
+
+        return wrapper
+
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
+
+
+def _get_mem(unit, value):
+
+    if unit.lower() == "bytes":
+        return getsizeof(value), "bytes"
+    if unit.lower() == "mb":
+        return getsizeof(value) / 1.0e6, "MBs"
+    if unit.lower() == "gb":
+        return getsizeof(value) / 1.0e9, "GBs"
+    if unit.lower() == "tb":
+        return getsizeof(value) / 1.0e12, "TBs"
+
+
+def memory(
+    func_=None,
+    unit="bytes",
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+):
+    """Profile local variable memory.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+
+    def _decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            log_level = _get_log_level(level, console_log_level)
+
+            log_level(f"Function signature: {inspect.signature(func)}")
+
+            for arg in args:
+                arg_size = getsizeof(arg)
+                mem_value, mem_unit = _get_mem(unit, arg_size)
+
+                log_level(
+                    f"Size of argument {str(arg)[:10]}: {mem_value} {mem_unit}"
+                )
+
+            # Check size of keyword arguments
+            for key, value in kwargs.items():
+                print(key, value)
+                mem_value, mem_unit = _get_mem(unit, value)
+                log_level(
+                    f"Size of keyword argument '{str(key)[:10]}: {mem_value} {mem_unit}"
+                )
+
+            # Call the decorated function
+            output = func(*args, **kwargs)
+
+            log_level(f"Size of output: {getsizeof(output)}")
+
+            return output
+
+        return wrapper
+
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
+
+
+def typing(
+    func_=None,
+    unit="bytes",
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+):
+    """Profile local variable type.
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+
+    def _decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            log_level = _get_log_level(level, console_log_level)
+
+            log_level(f"Function signature: {inspect.signature(func)}")
+
+            for arg in args:
+                arg_size = getsizeof(arg)
+                mem_value, mem_unit = _get_mem(unit, arg_size)
+
+                log_level(f"type of argument {type(arg)}")
+
+            # Check size of keyword arguments
+            for key, value in kwargs.items():
+                print(key, value)
+                mem_value, mem_unit = _get_mem(unit, value)
+                log_level(f"Size of keyword argument '{type(key)}")
+
+            # Call the decorated function
+            output = func(*args, **kwargs)
+
+            log_level(f"Type of output: {type(output)}")
+
+            return output
 
         return wrapper
 

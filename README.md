@@ -10,7 +10,7 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 ## ⚙️Installation
 - Option 1, via pip: `pip install pydeclog`
 - Option 2, via conda package manager: `conda install -c conda-forge pydeclog`
-- Option 3, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git
+- Option 3, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git`
 ***
 
 ## 🔗Dependencies
