@@ -1,4 +1,4 @@
-import functools
+from functools import wraps, partial
 import logging
 import os
 import time
@@ -52,14 +52,20 @@ def _get_time(t_start, t_end, unit):
         raise TypeError(f"Unit of time {unit} not known!")
 
 
-def timing(unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL):
-    """Timer decorator.
+def timing(
+    func_=None, unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL
+):
+    """Decorate function with elapsed time.
 
-    Time the execution time of the passed in function.
+    Parameters
+    -----------
+
+    Returns
+    -------
     """
 
-    def decorator(func):
-        @functools.wraps(func)
+    def _decorator(func):
+        @wraps(func)
         def wrapper(self, *args, **kwargs):
             t1 = time.time()
             result = func(self, *args, **kwargs)
@@ -80,10 +86,15 @@ def timing(unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
         return wrapper
 
-    return decorator
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def message(level="info", console_log_level=CONSOLE_LOG_LEVEL):
+def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
     """Control print messages.
 
     Takes care of both the dumped .log file
@@ -101,8 +112,8 @@ def message(level="info", console_log_level=CONSOLE_LOG_LEVEL):
     NOTSET   : 0
     """
 
-    def decorator(func):
-        @functools.wraps(func)
+    def _decorator(func):
+        @wraps(func)
         def wrapper(self, *args, **kwargs):
 
             s = StringIO()
@@ -120,7 +131,12 @@ def message(level="info", console_log_level=CONSOLE_LOG_LEVEL):
 
         return wrapper
 
-    return decorator
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
 def _get_log_level(level, console_log_level):
@@ -147,7 +163,7 @@ def _get_log_level(level, console_log_level):
     return log_level
 
 
-def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+def signature(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     """Get function signature.
 
     Parameters
@@ -157,8 +173,8 @@ def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     -------
     """
 
-    def decorator(func):
-        @functools.wraps(func)
+    def _decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             log_level = _get_log_level(level, console_log_level)
 
@@ -172,10 +188,15 @@ def signature(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
         return wrapper
 
-    return decorator
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def arguments(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+def arguments(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     """Get args and kwargs.
 
     Takes care of both the dumped .log file
@@ -193,9 +214,10 @@ def arguments(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     NOTSET   : 0
     """
 
-    def decorator(func):
-        @functools.wraps(func)
+    def _decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
+
             log_level = _get_log_level(level, console_log_level)
 
             log_level("Method's name: " + func.__name__)
@@ -209,10 +231,17 @@ def arguments(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
         return wrapper
 
-    return decorator
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def description(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+def description(
+    func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL
+):
     """Get function description.
 
     Parameters
@@ -222,8 +251,8 @@ def description(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     -------
     """
 
-    def decorator(func):
-        @functools.wraps(func)
+    def _decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             log_level = _get_log_level(level, console_log_level)
 
@@ -236,7 +265,12 @@ def description(level="debug", console_log_level=CONSOLE_LOG_LEVEL):
 
         return wrapper
 
-    return decorator
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
 def get_logger(
