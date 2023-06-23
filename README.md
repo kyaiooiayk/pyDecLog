@@ -27,6 +27,8 @@ None
 - `@signature`: get function's signature
 - `@arguments`: get functions's args and kwargs
 - `@message`: collect and log the functions's print statements
+- `@typing`: log function's args, kwargs and output type
+- `@memory`: log function's args, kwargs and output memory usage
 - `@description`: get functions's output of the `__doc__` dunder method
 ***
 
