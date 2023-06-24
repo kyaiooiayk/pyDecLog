@@ -8,7 +8,7 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 ***
 
 ## ⚙️Installation
-- Create your own virtual environment and run `pip install -r requirements.txt`, then choose one of the following option:
+- Create your own virtual environment and run `pip install -r requirements.txt`, then choose one of the following options:
   - Option 1, via pip: `pip install pydeclog`
   - Option 2, via conda package manager: `conda install -c conda-forge pydeclog`
   - Option 3, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git`
@@ -25,14 +25,14 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 
 ## 🎨Available decorators
 - `@comment`: log all the print statements inside a decorated function
-- `@timing`: time the function
-- `@signature`: get function's signature
-- `@arguments`: get functions's args and kwargs
-- `@message`: collect and log the functions's print statements
+- `@timing`: log the function elapsed time
+- `@signature`: log function's signature
+- `@arguments`: log function's args and kwargs
+- `@message`: log the function's print statements
 - `@typing`: log function's args, kwargs and output type
-- `@memory`: log function's args, kwargs and output memory usage
-- `@description`: get function's output of the `__doc__` dunder method
-- `@profile_local`: get function's local persistent variables and add an attribute to the function.
+- `@memory`: log function's args, kwargs and output their memory usage
+- `@description`: log function's output from the `__doc__` dunder method
+- `@profile_local`: log function's local persistent variables and add an attribute to the function.
 ***
 
 ## 🪄Features
@@ -42,8 +42,8 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 - Can add comments directly to log file even outside a function.
 ***
 
-## Known issues
-- `@profile_local` does not write to the log file. Its output needs to be sent separately to the log. See the following example:
+## ⚠️Known issues
+- `@profile_local` does not write to the log file. Its output needs to be piped separately to the log. See the following example:
 ```python
 ```
 ***
