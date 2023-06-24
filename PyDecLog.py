@@ -7,6 +7,9 @@ from io import StringIO
 import numpy as np
 import inspect
 from sys import getsizeof
+import sys
+from pympler.asizeof import asizeof
+
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_DIR = "./"
@@ -277,13 +280,13 @@ def description(
 def _get_mem(unit, value):
 
     if unit.lower() == "bytes":
-        return getsizeof(value), "bytes"
+        return asizeof(value), "bytes"
     if unit.lower() == "mb":
-        return getsizeof(value) / 1.0e6, "MBs"
+        return asizeof(value) / 1.0e6, "MBs"
     if unit.lower() == "gb":
-        return getsizeof(value) / 1.0e9, "GBs"
+        return asizeof(value) / 1.0e9, "GBs"
     if unit.lower() == "tb":
-        return getsizeof(value) / 1.0e12, "TBs"
+        return asizeof(value) / 1.0e12, "TBs"
 
 
 def memory(
@@ -390,6 +393,36 @@ def typing(
         return _decorator
     else:
         raise RuntimeWarning("Positional arguments are not supported!")
+
+
+class profile_locals:
+    """Profile persistent local variables."""
+
+    def __init__(self, func):
+        self._locals = {}
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        def tracer(frame, event, arg):
+            if event == "return":
+                self._locals = frame.f_locals.copy()
+
+        # tracer is activated on next call, return or exception
+        sys.setprofile(tracer)
+        try:
+            # trace the function call
+            res = self.func(*args, **kwargs)
+        finally:
+            # disable tracer and replace with old one
+            sys.setprofile(None)
+        return res
+
+    def clear_locals(self):
+        self._locals = {}
+
+    @property
+    def locals(self):
+        return self._locals
 
 
 def get_logger(
