@@ -330,7 +330,7 @@ def memory(
             # Call the decorated function
             output = func(*args, **kwargs)
 
-            log_level(f"Size of output: {getsizeof(output)}")
+            log_level(f"Size of output: {getsizeof(output)} {mem_unit}")
 
             return output
 

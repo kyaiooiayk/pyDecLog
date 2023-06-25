@@ -89,12 +89,12 @@ if __name__ == "__main__":
 - `@typing`: log function's args, kwargs and output type
 - `@memory`: log function's args, kwargs and output their memory usage
 - `@description`: log function's output from the `__doc__` dunder method
-- `@profile_local`: log function's local persistent variables and add an attribute to the function.
+- `@profile_local`: log function's local persistent variables.
 ***
 
 ## 🪄Features
 - Mix and match the decorators you want.
-- Can control logging levels.
+- Can control logging levels as a whole or individually.
 - Can control where logging messages are piped: to log file or both log file and console.
 - Can add comments directly to log file even outside a function.
 ***
@@ -106,7 +106,7 @@ if __name__ == "__main__":
 ***
 
 ## 📚Tutorials
-- See the `example` folder.
+- See the `examples` folder.
 ***
 
 ## 📚References
