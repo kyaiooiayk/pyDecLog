@@ -2,6 +2,11 @@
 PyDecLog: a simple and easy to use Python package for logging via decorators.
 ***
 
+## 🚀Quick start
+- Say we have the following workflow
+```
+```
+
 ## 🚀Useful for
 - Keep track of Python pipelines.
 - Log info about a function during development both on python script or jupyter notebook.
@@ -12,11 +17,11 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
   - Option 1, via pip: `pip install pydeclog`
   - Option 2, via conda package manager: `conda install -c conda-forge pydeclog`
   - Option 3, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git`
-  - Option 4, via Docker. Pull latest docker image from Dockerhub: `docker pull our_package_name:latest` and then `docker run -it our_package_name:latest bash`
 ***
 
 ## 🔗Dependencies
-- `pympler`
+- PyDevLog requires Python 3.5 or higher, and the following packages:
+  - `pympler`
 ***
 
 ## 🧑‍🤝‍🧑Contributions
@@ -48,6 +53,10 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 ```
 ***
 
+## 📚Tutorials
+- See the `example` folder.
+***
+
 ## 📚References
 - [Decorators with parameters?](https://stackoverflow.com/questions/5929107/decorators-with-parameters)
 - [How to expose persistent local variables? Part#1](https://code.activestate.com/recipes/577283-decorator-to-expose-local-variables-of-a-function-/)
@@ -63,4 +72,5 @@ PyDecLog: a simple and easy to use Python package for logging via decorators.
 ***
 
 ## 🪪License
+- MIT License
 ***
