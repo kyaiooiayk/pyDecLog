@@ -94,7 +94,12 @@ if __name__ == "__main__":
 
 ## 🪄Features
 - Mix and match the decorators you want.
-- Can control logging levels as a whole or individually.
+- Can control logging levels as a whole or individually. Choose from the following:
+  - `CRITICAL`
+  - `ERROR`
+  - `WARNING`
+  - `INFO`
+  - `DEBUG`
 - Can control where logging messages are piped: to log file or both log file and console.
 - Can add comments directly to log file even outside a function.
 ***
