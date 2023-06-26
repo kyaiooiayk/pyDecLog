@@ -100,7 +100,16 @@ if __name__ == "__main__":
   - `WARNING`
   - `INFO`
   - `DEBUG`
-- Can control where logging messages are piped: to log file or both log file and console.
+- Can control where logging messages are piped: to log file or both log file and console. When controlling the message at the console level the following hirarchy is enforced:
+  ```
+    LEVEL      NUMERIC VALUE
+    CRITICAL : 50
+    ERROR    : 40
+    WARNING  : 30
+    INFO     : 20
+    DEBUG    : 10
+    NOTSET   : 0
+  ```
 - Can add comments directly to log file even outside a function.
 ***
 

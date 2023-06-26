@@ -13,35 +13,46 @@ from pympler.asizeof import asizeof
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_PATH = "./"
-# It is assumed the console level will be printed only for critical component
 CONSOLE_LOG_LEVEL = "critical"
 
 
-def lprint(console_log_level="info"):
-    """Special version of print for logging.
+def lprint(
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
+):
+    """Log print (lprint)
 
-    Parameters
-    ----------
+    Args:
+        console_log_level (str, optional): Set console log level. Defaults to CONSOLE_LOG_LEVEL.
+        log_file_name (str, optional): Assign log gile name. Defaults to LOG_FILE_NAME.
+        log_file_path (str, optional): Set log file path. Defaults to LOG_FILE_PATH.
 
-    Returns
-    -------
+    Returns:
+        _type_: logger object
     """
+
     logger_obj = get_logger(
-        log_file_name=LOG_FILE_NAME,
-        log_dir=LOG_FILE_PATH,
+        log_file_name=log_file_name,
         console_log_level=console_log_level,
+        log_file_path=log_file_path,
     )
     return logger_obj
 
 
-def _get_time(t_start, t_end, unit):
-    """Get elapsed time given the unit.
+def _get_time(t_start: float, t_end: float, unit: str):
+    """Get elapsed time given the unit
 
-    Parameters
-    ----------
+    Args:
+        t_start (float): kernel time at start of process.
+        t_end (float): kernel time at end of process.
+        unit (str): String describing unit of time: sec, min or hr.
 
-    Returns
-    -------
+    Raises:
+        TypeError: _description_
+
+    Returns:
+        _type_: float
     """
 
     if unit.lower() == "sec":
@@ -64,13 +75,17 @@ def timing(
     log_file_name=LOG_FILE_NAME,
     log_file_path=LOG_FILE_PATH,
 ):
-    """Decorate function with elapsed time.
+    """Wrap function with execution time
 
-    Parameters
-    -----------
-
-    Returns
-    -------
+    Args:
+        func_ (_type_, optional): wrapped function. Defaults to None.
+        unit (str, optional): Unit of time. Defaults to "sec".
+        level (str, optional): Log level: debug, info, critical, error.
+            Defaults to "debug".
+        console_log_level (_type_, optional): Console log level: debug,
+            info, critical, error. Defaults to CONSOLE_LOG_LEVEL.
+        log_file_name (_type_, optional): Name of the log file. Defaults to LOG_FILE_NAME.
+        log_file_path (_type_, optional): Path of the log file. Defaults to LOG_FILE_PATH.
     """
 
     def _decorator(func):
@@ -85,11 +100,7 @@ def timing(
             )
 
             log_level(
-                str(func.__name__)
-                + " was executed in: "
-                + str(_get_time(t1, t2, unit))
-                + " "
-                + unit
+                f"{str(func.__name__)} was executed in: {str(_get_time(t1, t2, unit))} {unit}"
             )
             return output
 
@@ -155,6 +166,7 @@ def message(
 
 
 def _get_log_level(level, console_log_level, log_file_name, log_file_path):
+
     # Create logger object
     logger_obj = get_logger(
         log_file_name=log_file_name,
@@ -271,7 +283,11 @@ def arguments(
 
 
 def description(
-    func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL
+    func_=None,
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
 ):
     """Get function description.
 
@@ -285,7 +301,9 @@ def description(
     def _decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            log_level = _get_log_level(level, console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
 
             log_level("Method's description: " + func.__doc__)
 
