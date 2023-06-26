@@ -6,9 +6,6 @@ from PyDecLog import lprint
 from PyDecLog import description as doc
 from PyDecLog import memory as mem
 import time
-import sys
-
-sys.path.append("../../")
 
 
 def workflow():

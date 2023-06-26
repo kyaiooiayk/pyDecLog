@@ -272,8 +272,8 @@ def signature(
                 level, console_log_level, log_file_name, log_file_path
             )
 
-            log_level("Method's name: " + func.__name__)
-            log_level("Method's signature:" + str(inspect.signature(func)))
+            log_level(f"Method's name: {func.__name__}")
+            log_level(f"Method's signature: {str(inspect.signature(func))}")
 
             # Call the function as usual
             output = func(*args, **kwargs)
@@ -323,8 +323,8 @@ def arguments(
             )
 
             log_level(f"Method's name: {func.__name__}")
-            log_level("Method's args: {}".format(args))
-            log_level("Method's kwargs: {}".format(kwargs))
+            log_level(f"Method's args: {args}")
+            log_level(f"Method's kwargs: {kwargs}")
 
             # Call the function as usual
             output = func(*args, **kwargs)
