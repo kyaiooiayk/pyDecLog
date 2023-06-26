@@ -1,13 +1,9 @@
-# some_name_test.py
+from pyDecLog import profile_locals as profile
 import unittest
 from unittest.mock import MagicMock
 import os
 import sys
 import shutil
-
-sys.path.append("../")
-
-from PyDecLog import profile_locals as profile
 
 
 class TestProfileLocals(unittest.TestCase):

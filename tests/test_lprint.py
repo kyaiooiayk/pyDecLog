@@ -1,14 +1,10 @@
-# some_name_test.py
+from pyDecLog import message as mes
+from pyDecLog import lprint
 import unittest
 from unittest.mock import MagicMock
 import os
 import sys
 import shutil
-
-sys.path.append("../")
-
-from PyDecLog import message as mes
-from PyDecLog import lprint
 
 
 class TestlPrint(unittest.TestCase):

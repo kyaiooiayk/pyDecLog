@@ -1,4 +1,4 @@
-# some_name_test.py
+from pyDecLog import _get_mem
 import unittest
 from unittest.mock import MagicMock
 import os
@@ -6,9 +6,6 @@ import sys
 import shutil
 import numpy as np
 from pympler.asizeof import asizeof
-
-sys.path.append("../")
-from PyDecLog import _get_mem
 
 
 class TestlGetMemorySize(unittest.TestCase):

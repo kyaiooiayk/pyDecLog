@@ -1,13 +1,9 @@
-# some_name_test.py
+from pyDecLog import timing as tim
 import unittest
 from unittest.mock import MagicMock
 import os
 import sys
 import shutil
-
-sys.path.append("../")
-
-from PyDecLog import timing as tim
 
 
 class TestTiming(unittest.TestCase):

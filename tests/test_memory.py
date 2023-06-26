@@ -1,13 +1,9 @@
-# some_name_test.py
+from pyDecLog import memory as mem
 import unittest
 from unittest.mock import MagicMock
 import os
 import sys
 import shutil
-
-sys.path.append("../")
-
-from PyDecLog import memory as mem
 
 
 class TestTiming(unittest.TestCase):

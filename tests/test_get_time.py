@@ -1,14 +1,10 @@
-# some_name_test.py
+from pyDecLog import _get_time
 import unittest
 from unittest.mock import MagicMock
 import os
 import sys
 import shutil
 import numpy as np
-
-sys.path.append("../")
-
-from PyDecLog import _get_time
 
 
 class TestlPrint(unittest.TestCase):
