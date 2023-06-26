@@ -71,9 +71,8 @@ Workflow ends!
 
 ## ⚙️Installation
 - Create your own virtual environment and run `pip install -r requirements.txt`, then choose one of the following options:
-  - Option 1, via pip: `pip install pydeclog`
-  - Option 2, via conda package manager: `conda install -c conda-forge pydeclog`
-  - Option 3, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git`
+  - Option 1, via pip: `pip install pydeclog` 
+  - Option 2, from source: `pip install git+https://github.com/kayaiooiayk/pydeclog.git`
 ***
 
 ## 🔗Dependencies
