@@ -119,8 +119,23 @@ Workflow ends!
 ***
 
 ## ⚠️Known issues
-- `@profile_local` does not write to the log file. Its output needs to be piped separately to the log. See the following example:
+- `@profile_locals` does not write to the log file. Its output needs to be piped separately to the log. See the following example:
 ```python
+from PyDecLog import profile_locals as profile
+from PyDecLog import lprint
+
+@profile
+def func():
+    local1 = 1
+    local2 = 2
+    return 1
+
+func()
+
+for key, value in func.locals.items():
+    msg = f"Variable: {key} | value: {value} | type: {type(value)} | size: {asizeof(value)}"
+
+    lprint(console_log_level="debug").debug(msg)
 ```
 ***
 
