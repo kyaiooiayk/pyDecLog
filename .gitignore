@@ -3,6 +3,17 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*.ipynb_checkpoints
+**/.DS_Store
+**/*.pyc
+**/*.coverage
+**/*__pycache__
+**/*.h5
+**/*.csv
+**/*.zip
+**/model.png
+
+
 # C extensions
 *.so
 

@@ -105,9 +105,8 @@ Workflow ends!
   - `WARNING`
   - `INFO`
   - `DEBUG`
-- Can control where logging messages are piped: to log file or both log file and console. When controlling the message at the console level the following hirarchy is enforced:
+- Can control where logging messages are piped: to log file or both log file and console. When controlling the message at the console level the following hierarchy is enforced:
   ```
-    LEVEL      NUMERIC VALUE
     CRITICAL : 50
     ERROR    : 40
     WARNING  : 30
@@ -164,4 +163,5 @@ for key, value in func.locals.items():
 ## Developers
 - Doc string were generated via [autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) package using NumPy fomrat.
 - Typing hints for function return type by [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance).
+- Testing was done via unittesting.
 ***

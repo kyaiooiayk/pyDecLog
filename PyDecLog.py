@@ -412,12 +412,14 @@ def _get_mem(unit: str, value: float):
 
     if unit.lower() == "bytes":
         return asizeof(value), "bytes"
-    if unit.lower() == "mb":
+    elif unit.lower() == "mb":
         return asizeof(value) / 1.0e6, "MBs"
-    if unit.lower() == "gb":
+    elif unit.lower() == "gb":
         return asizeof(value) / 1.0e9, "GBs"
-    if unit.lower() == "tb":
+    elif unit.lower() == "tb":
         return asizeof(value) / 1.0e12, "TBs"
+    else:
+        raise TypeError(f"Memory unit level {unit} not known!")
 
 
 def memory(
@@ -470,7 +472,6 @@ def memory(
 
             # Check size of keyword arguments
             for key, value in kwargs.items():
-                print(key, value)
                 mem_value, mem_unit = _get_mem(unit, value)
                 log_level(
                     f"Size of keyword argument '{str(key)[:10]}: {mem_value} {mem_unit}"
@@ -495,7 +496,6 @@ def memory(
 
 def typing(
     func_: None = None,
-    unit: str = "bytes",
     level: str = "debug",
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
@@ -534,15 +534,10 @@ def typing(
             log_level(f"Function signature: {inspect.signature(func)}")
 
             for arg in args:
-                arg_size = getsizeof(arg)
-                mem_value, mem_unit = _get_mem(unit, arg_size)
-
-                log_level(f"type of argument {type(arg)}")
+                log_level(f"Argument's type: {type(arg)}")
 
             # Check size of keyword arguments
             for key, value in kwargs.items():
-                print(key, value)
-                mem_value, mem_unit = _get_mem(unit, value)
                 log_level(f"Size of keyword argument '{type(key)}")
 
             # Call the decorated function
@@ -583,9 +578,6 @@ class profile_locals:
             # Disable tracer and replace with old one
             sys.setprofile(None)
         return res
-
-    def clear_locals(self):
-        self._locals = {}
 
     @property
     def locals(self):
