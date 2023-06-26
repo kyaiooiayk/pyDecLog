@@ -12,7 +12,7 @@ from pympler.asizeof import asizeof
 
 
 LOG_FILE_NAME = "LOG"
-LOG_FILE_DIR = "./"
+LOG_FILE_PATH = "./"
 # It is assumed the console level will be printed only for critical component
 CONSOLE_LOG_LEVEL = "critical"
 
@@ -28,7 +28,7 @@ def lprint(console_log_level="info"):
     """
     logger_obj = get_logger(
         log_file_name=LOG_FILE_NAME,
-        log_dir=LOG_FILE_DIR,
+        log_dir=LOG_FILE_PATH,
         console_log_level=console_log_level,
     )
     return logger_obj
@@ -57,7 +57,12 @@ def _get_time(t_start, t_end, unit):
 
 
 def timing(
-    func_=None, unit="sec", level="debug", console_log_level=CONSOLE_LOG_LEVEL
+    func_=None,
+    unit="sec",
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
 ):
     """Decorate function with elapsed time.
 
@@ -76,7 +81,7 @@ def timing(
             t2 = time.time()
 
             log_level = _get_log_level(
-                level, console_log_level=console_log_level
+                level, console_log_level, log_file_name, log_file_path
             )
 
             log_level(
@@ -98,7 +103,13 @@ def timing(
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
+def message(
+    func_=None,
+    level="info",
+    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
+):
     """Control print messages.
 
     Takes care of both the dumped .log file
@@ -125,7 +136,7 @@ def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
                 output = func(self, *args, **kwargs)
 
             log_level = _get_log_level(
-                level, console_log_level=console_log_level
+                level, console_log_level, log_file_name, log_file_path
             )
             for i in s.getvalue().split("\n"):
                 if i:
@@ -143,11 +154,11 @@ def message(func_=None, level="info", console_log_level=CONSOLE_LOG_LEVEL):
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def _get_log_level(level, console_log_level):
+def _get_log_level(level, console_log_level, log_file_name, log_file_path):
     # Create logger object
     logger_obj = get_logger(
-        log_file_name=LOG_FILE_NAME,
-        log_dir=LOG_FILE_DIR,
+        log_file_name=log_file_name,
+        log_file_path=log_file_path,
         console_log_level=console_log_level,
     )
 
@@ -167,7 +178,13 @@ def _get_log_level(level, console_log_level):
     return log_level
 
 
-def signature(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+def signature(
+    func_=None,
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
+):
     """Get function signature.
 
     Parameters
@@ -180,7 +197,9 @@ def signature(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
     def _decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            log_level = _get_log_level(level, console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
 
             log_level("Method's name: " + func.__name__)
             log_level("Method's signature:" + str(inspect.signature(func)))
@@ -200,7 +219,13 @@ def signature(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def arguments(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
+def arguments(
+    func_=None,
+    level="debug",
+    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
+):
     """Get args and kwargs.
 
     Takes care of both the dumped .log file
@@ -222,7 +247,9 @@ def arguments(func_=None, level="debug", console_log_level=CONSOLE_LOG_LEVEL):
         @wraps(func)
         def wrapper(*args, **kwargs):
 
-            log_level = _get_log_level(level, console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
 
             log_level("Method's name: " + func.__name__)
             log_level("Method's args: {}".format(args))
@@ -294,6 +321,8 @@ def memory(
     unit="bytes",
     level="debug",
     console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
 ):
     """Profile local variable memory.
 
@@ -307,7 +336,9 @@ def memory(
     def _decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            log_level = _get_log_level(level, console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
 
             log_level(f"Function signature: {inspect.signature(func)}")
 
@@ -349,6 +380,8 @@ def typing(
     unit="bytes",
     level="debug",
     console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name=LOG_FILE_NAME,
+    log_file_path=LOG_FILE_PATH,
 ):
     """Profile local variable type.
 
@@ -362,7 +395,9 @@ def typing(
     def _decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            log_level = _get_log_level(level, console_log_level)
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
 
             log_level(f"Function signature: {inspect.signature(func)}")
 
@@ -427,7 +462,7 @@ class profile_locals:
 
 def get_logger(
     log_file_name="LOG",
-    log_dir=LOG_FILE_DIR,
+    log_file_path=LOG_FILE_PATH,
     console_log_level=CONSOLE_LOG_LEVEL,
 ):
     """Creates a Log File and returns Logger object
@@ -443,11 +478,15 @@ def get_logger(
     NOTSET   : 0
     """
 
+    # Create logging folder
+    if log_file_path != "./" and not os.path.exists(log_file_path):
+        os.makedirs(log_file_path)
+
     # Build Log File Full Path
-    logPath = (
+    log_path = (
         log_file_name
         if os.path.exists(log_file_name)
-        else os.path.join(log_dir, (str(log_file_name) + ".log"))
+        else os.path.join(log_file_path, (str(log_file_name) + ".log"))
     )
 
     # Create handler for the log file
@@ -455,7 +494,7 @@ def get_logger(
     # Create logger object and set the format for logging and other attributes
     logger = logging.Logger(log_file_name)
     # logger.setLevel(logging.DEBUG)
-    handler = logging.FileHandler(logPath, "a+")
+    handler = logging.FileHandler(log_path, "a+")
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s %(message)s", "%Y/%m/%d | %H:%M:%S"
     )
@@ -485,5 +524,4 @@ def get_logger(
     # Add the handler to the root logger
     logger.addHandler(console)
 
-    # Return logger object
     return logger
