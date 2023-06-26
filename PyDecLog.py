@@ -21,15 +21,21 @@ def lprint(
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
 ):
-    """Log print (lprint)
+    """Log print (lprint).
 
-    Args:
-        console_log_level (str, optional): Set console log level. Defaults to CONSOLE_LOG_LEVEL.
-        log_file_name (str, optional): Assign log gile name. Defaults to LOG_FILE_NAME.
-        log_file_path (str, optional): Set log file path. Defaults to LOG_FILE_PATH.
+    Parameters
+    ----------
+    console_log_level : str, optional
+        Set console log level, by default CONSOLE_LOG_LEVEL
+    log_file_name : str, optional
+        Log file name, by default LOG_FILE_NAME
+    log_file_path : str, optional
+        Set log file path, by default LOG_FILE_PATH
 
-    Returns:
-        _type_: logger object
+    Returns
+    -------
+    object
+        Logger object
     """
 
     logger_obj = get_logger(
@@ -41,20 +47,27 @@ def lprint(
 
 
 def _get_time(t_start: float, t_end: float, unit: str):
-    """Get elapsed time given the unit
+    """Get elapsed time given the unit.
 
-    Args:
-        t_start (float): kernel time at start of process.
-        t_end (float): kernel time at end of process.
-        unit (str): String describing unit of time: sec, min or hr.
+    Parameters
+    ----------
+    t_start : float
+        kernel time at start of process.
+    t_end : float
+        Kernel time at end of process.
+    unit : str
+        String describing unit of time: sec, min or hr.
 
-    Raises:
-        TypeError: _description_
+    Returns
+    -------
+    float
+        Elapsed time.
 
-    Returns:
-        _type_: float
+    Raises
+    ------
+    TypeError
+        Raise of the unit is not known.
     """
-
     if unit.lower() == "sec":
         return np.around(t_end - t_start, 3)
 
@@ -68,24 +81,34 @@ def _get_time(t_start: float, t_end: float, unit: str):
 
 
 def timing(
-    func_=None,
-    unit="sec",
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    unit: str = "sec",
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
-    """Wrap function with execution time
+    """Wrap function with execution time.
 
-    Args:
-        func_ (_type_, optional): wrapped function. Defaults to None.
-        unit (str, optional): Unit of time. Defaults to "sec".
-        level (str, optional): Log level: debug, info, critical, error.
-            Defaults to "debug".
-        console_log_level (_type_, optional): Console log level: debug,
-            info, critical, error. Defaults to CONSOLE_LOG_LEVEL.
-        log_file_name (_type_, optional): Name of the log file. Defaults to LOG_FILE_NAME.
-        log_file_path (_type_, optional): Path of the log file. Defaults to LOG_FILE_PATH.
+    Parameters
+    ----------
+    func_ : None, optional
+        Wrapped function, by default None.
+    unit : str, optional
+        Unit of time: "sec", "min" or "hr", by default "sec".
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug".
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
+
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
     """
 
     def _decorator(func):
@@ -115,27 +138,31 @@ def timing(
 
 
 def message(
-    func_=None,
-    level="info",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    level: str = "info",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
-    """Control print messages.
+    """Collect and pip all functions calls.
 
-    Takes care of both the dumped .log file
-    and the console ouput. The rule used here is as follows:
-    - Only general and DEBUG information are log inside the decorator.
-    - Anything else is logged inside the funciton being called.
+    Parameters
+    ----------
+    func_ : None, optional
+        Wrapped function, by default None.
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug"
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
 
-    The hierarchy is:
-    LEVEL      NUMERIC VALUE
-    CRITICAL : 50
-    ERROR    : 40
-    WARNING  : 30
-    INFO     : 20
-    DEBUG    : 10
-    NOTSET   : 0
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
     """
 
     def _decorator(func):
@@ -165,7 +192,32 @@ def message(
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def _get_log_level(level, console_log_level, log_file_name, log_file_path):
+def _get_log_level(
+    level: str, console_log_level: str, log_file_name: str, log_file_path: str
+):
+    """Return Logger object given a log level.
+
+    Parameters
+    ----------
+    level : str
+        Log level: "debug", "info", "critical" or "error".
+    console_log_level : str
+        Console log level.
+    log_file_name : str
+        Name of the log file.
+    log_file_path : str
+        Path of the log file
+
+    Returns
+    -------
+    Obejct
+        Logger
+
+    Raises
+    ------
+    TypeError
+        Raised of logging level is not known.
+    """
 
     # Create logger object
     logger_obj = get_logger(
@@ -191,19 +243,26 @@ def _get_log_level(level, console_log_level, log_file_name, log_file_path):
 
 
 def signature(
-    func_=None,
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
     """Get function signature.
 
     Parameters
     ----------
-
-    Returns
-    -------
+    func_ : None, optional
+        Wrapped function, by default None.
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug".
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
     """
 
     def _decorator(func):
@@ -232,27 +291,27 @@ def signature(
 
 
 def arguments(
-    func_=None,
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
     """Get args and kwargs.
 
-    Takes care of both the dumped .log file
-    and the console ouput. The rule used here is as follows:
-    - Only general and DEBUG information are log inside the decorator.
-    - Anything else is logged inside the funciton being called.
-
-    The hierarchy is:
-    LEVEL      NUMERIC VALUE
-    CRITICAL : 50
-    ERROR    : 40
-    WARNING  : 30
-    INFO     : 20
-    DEBUG    : 10
-    NOTSET   : 0
+    Parameters
+    ----------
+    func_ : None, optional
+        Wrapped function, by default None.
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug".
+    console_log_level : str, optional
+        Console log level. Same options as log level,
+        by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
     """
 
     def _decorator(func):
@@ -263,7 +322,7 @@ def arguments(
                 level, console_log_level, log_file_name, log_file_path
             )
 
-            log_level("Method's name: " + func.__name__)
+            log_level(f"Method's name: {func.__name__}")
             log_level("Method's args: {}".format(args))
             log_level("Method's kwargs: {}".format(kwargs))
 
@@ -283,19 +342,32 @@ def arguments(
 
 
 def description(
-    func_=None,
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
-    """Get function description.
+    """Describe function by pulling __doc__ string.
 
     Parameters
     ----------
+    func_ : None, optional
+        _description_, by default None
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug".
+    console_log_level : str, optional
+        Console log level. Same options as log level,
+        by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
 
-    Returns
-    -------
+    Raises
+    ------
+    RunTimeWarning
+        Raised if positional argument is used.
     """
 
     def _decorator(func):
@@ -305,7 +377,7 @@ def description(
                 level, console_log_level, log_file_name, log_file_path
             )
 
-            log_level("Method's description: " + func.__doc__)
+            log_level(f"Method's description: {func.__doc__}")
 
             # Call the function as usual
             output = func(*args, **kwargs)
@@ -322,7 +394,21 @@ def description(
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def _get_mem(unit, value):
+def _get_mem(unit: str, value: float):
+    """Get memory formatting given the unit.
+
+    Parameters
+    ----------
+    unit : str
+        Unit of memory: "bytes", "mb", "gb" or "tb".
+    value : float
+        Amount of memory used.
+
+    Returns
+    -------
+    float
+        Amount of memory used in the chosen unit.
+    """
 
     if unit.lower() == "bytes":
         return asizeof(value), "bytes"
@@ -335,20 +421,34 @@ def _get_mem(unit, value):
 
 
 def memory(
-    func_=None,
-    unit="bytes",
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    unit: str = "bytes",
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
-    """Profile local variable memory.
+    """Profile local variables memory.
 
     Parameters
     ----------
+    func_ : None, optional
+        Wrapped function, by default None
+    unit : str, optional
+        Unit of memory: "bytes", "mb", "gb" or "tr", by default "bytes"
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug"
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
 
-    Returns
-    -------
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
     """
 
     def _decorator(func):
@@ -394,20 +494,34 @@ def memory(
 
 
 def typing(
-    func_=None,
-    unit="bytes",
-    level="debug",
-    console_log_level=CONSOLE_LOG_LEVEL,
-    log_file_name=LOG_FILE_NAME,
-    log_file_path=LOG_FILE_PATH,
+    func_: None = None,
+    unit: str = "bytes",
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
 ):
     """Profile local variable type.
 
     Parameters
     ----------
+    func_ : None, optional
+        Wrapped function, by default None
+    unit : str, optional
+        Unit of memory: "bytes", "mb", "gb" or "tr", by default "bytes"
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug"
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
 
-    Returns
-    -------
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
     """
 
     def _decorator(func):
@@ -460,13 +574,13 @@ class profile_locals:
             if event == "return":
                 self._locals = frame.f_locals.copy()
 
-        # tracer is activated on next call, return or exception
+        # Tracer is activated on next call, return or exception
         sys.setprofile(tracer)
         try:
-            # trace the function call
+            # Trace the function call
             res = self.func(*args, **kwargs)
         finally:
-            # disable tracer and replace with old one
+            # Disable tracer and replace with old one
             sys.setprofile(None)
         return res
 
@@ -479,21 +593,25 @@ class profile_locals:
 
 
 def get_logger(
-    log_file_name="LOG",
-    log_file_path=LOG_FILE_PATH,
-    console_log_level=CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
+    console_log_level: str = CONSOLE_LOG_LEVEL,
 ):
-    """Creates a Log File and returns Logger object
+    """Creates a Log File and returns Logger object.
 
-    The hierarchy is (once set what is above is printed
-    and what is below is not printed):
-    LEVEL      NUMERIC VALUE
-    CRITICAL : 50
-    ERROR    : 40
-    WARNING  : 30
-    INFO     : 20
-    DEBUG    : 10
-    NOTSET   : 0
+    Parameters
+    ----------
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+
+    Returns
+    -------
+    object
+        Logger object.
     """
 
     # Create logging folder
@@ -508,24 +626,17 @@ def get_logger(
     )
 
     # Create handler for the log file
-    # ================================
-    # Create logger object and set the format for logging and other attributes
     logger = logging.Logger(log_file_name)
-    # logger.setLevel(logging.DEBUG)
     handler = logging.FileHandler(log_path, "a+")
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s %(message)s", "%Y/%m/%d | %H:%M:%S"
     )
-    # ('%(asctime)s - %(levelname)-10s - %(filename)s - %(levelname)s - %(message)s'))
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
     # Create handler for the console output
-    # ======================================
-    # Define a Handler which writes INFO messages or higher to the sys.stderr
     console = logging.StreamHandler()
 
-    # Levels are appendable
     if console_log_level.lower() == "info":
         console.setLevel(logging.INFO)
     elif console_log_level.lower() == "debug":
@@ -537,7 +648,7 @@ def get_logger(
 
     # Set a console format which is esier to read
     formatter = logging.Formatter("%(message)s")
-    # tell the handler to use this format
+    # Tell the handler to use this format
     console.setFormatter(formatter)
     # Add the handler to the root logger
     logger.addHandler(console)

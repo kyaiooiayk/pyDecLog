@@ -140,3 +140,8 @@ if __name__ == "__main__":
 ## 🪪License
 - MIT License
 ***
+
+## Developers
+- Doc string were generated via [autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) package using NumPy fomrat.
+- Typing hints for function return type by [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance).
+***
