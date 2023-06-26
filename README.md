@@ -44,7 +44,12 @@ def workflow():
 if __name__ == "__main__":
     workflow()
 ```
-- Upon execution the LOG.`log` file is written:
+- Upin execution the following is printed on console:
+```shell
+Workflow starts!
+Workflow ends!
+```
+- Upon execution a `LOG.log` file is written:
 ```shell
 2023/06/24 | 18:20:50 | ERROR Workflow starts!
 2023/06/24 | 18:20:50 | DEBUG Method's description: Sum two numbers.
