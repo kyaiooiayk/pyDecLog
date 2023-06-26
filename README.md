@@ -1,17 +1,17 @@
 # pyDecLog
-PyDecLog: a simple and easy to use Python package for logging via decorators.
+pyDecLog: a simple and easy to use Python package for logging via decorators.
 ***
 
 ## 🚀Quick start
 - Say we have the following workflow
 ```python
-from PyDecLog import arguments as arg
-from PyDecLog import signature as sign
-from PyDecLog import message as mes
-from PyDecLog import timing as tim
-from PyDecLog import lprint
-from PyDecLog import description as doc
-from PyDecLog import memory as mem
+from pyDecLog import arguments as arg
+from pyDecLog import signature as sign
+from pyDecLog import message as mes
+from pyDecLog import timing as tim
+from pyDecLog import lprint
+from pyDecLog import description as doc
+from pyDecLog import memory as mem
 import time
 import sys
 
@@ -79,6 +79,7 @@ Workflow ends!
 ## 🔗Dependencies
 - PyDevLog requires Python 3.5 or higher, and the following packages:
   - `pympler`
+  - `numpy`
 ***
 
 ## 🧑‍🤝‍🧑Contributions
@@ -120,8 +121,8 @@ Workflow ends!
 ## ⚠️Known issues
 - `@profile_locals` does not write to the log file. Its output needs to be piped separately to the log. See the following example:
 ```python
-from PyDecLog import profile_locals as profile
-from PyDecLog import lprint
+from pyDecLog import profile_locals as profile
+from pyDecLog import lprint
 
 @profile
 def func():
@@ -149,7 +150,7 @@ for key, value in func.locals.items():
 ***
 
 ## 📝Changelog
-- `0.1.0`  fist release (30/06/23).
+- `0.1.4`  first release (26/06/23).
 - ***
 
 ## 📝To-do

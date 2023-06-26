@@ -1,10 +1,10 @@
-from PyDecLog import arguments as arg
-from PyDecLog import signature as sign
-from PyDecLog import message as mes
-from PyDecLog import timing as tim
-from PyDecLog import lprint
-from PyDecLog import description as doc
-from PyDecLog import memory as mem
+from pyDecLog import arguments as arg
+from pyDecLog import signature as sign
+from pyDecLog import message as mes
+from pyDecLog import timing as tim
+from pyDecLog import lprint
+from pyDecLog import description as doc
+from pyDecLog import memory as mem
 import time
 
 
