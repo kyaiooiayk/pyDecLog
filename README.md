@@ -17,7 +17,7 @@ import sys
 
 def workflow():
 
-    # Set console level to the same level of the message so it is shown in the console
+    # Set console level to the same level of the message level so it is shown in the console
     lprint(console_log_level="info").info("Workflow starts!")
 
     # Decorate function as needed
@@ -26,7 +26,7 @@ def workflow():
     @arg
     @tim
     @mes
-    def sum_(first, second=2):
+    def sum_two_int(first, second=2):
         """Sum two numbers."""
 
         print("Some message on console")
@@ -35,7 +35,7 @@ def workflow():
         print("Result is: " + str(result))
         return result
 
-    sum_(1, 1)
+    sum_tow_int(1, 1)
 
     # Set console level to the same level of the message so it is shown in the console
     lprint(console_log_level="info").info("Workflow ends!")
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     workflow()
 ```
 - Upon execution the LOG.`log` file is written:
-```text
+```shell
 2023/06/24 | 18:20:50 | ERROR Workflow starts!
 2023/06/24 | 18:20:50 | DEBUG Method's description: Sum two numbers.
 2023/06/24 | 18:20:50 | DEBUG Method's name: sum_
