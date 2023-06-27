@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = "0.1.3"
+VERSION = "0.1.4"
 PACKAGE_NAME = "pyDecLog"
 AUTHOR = "kyaiooiayk"
 AUTHOR_EMAIL = "kayaiooiayk@email.com"
