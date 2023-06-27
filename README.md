@@ -7,8 +7,6 @@
 ![Stars](https://img.shields.io/github/stars/kyaiooiayk/pyDecLog)
 ![Issues](https://img.shields.io/github/issues/kyaiooiayk/pyDecLog)
 ![Forks](https://img.shields.io/github/forks/kyaiooiayk/pyDecLog)
-![Forks](https://img.shields.io/github/watchs/kyaiooiayk/pyDecLog)
-
 
 pyDecLog: a simple and easy to use Python module for logging via decorators.
 ***
