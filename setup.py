@@ -43,5 +43,5 @@ setup(
     extra_requires=EXTRAS_REQUIRES,
     packages=find_packages(),
     py_modules=["pyDecLog"],
-    classifier=CLASSIFIERS,
+    classifiers=CLASSIFIERS,
 )
