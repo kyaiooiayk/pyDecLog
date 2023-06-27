@@ -1,7 +1,7 @@
 from functools import wraps, partial
 import logging
 import os
-import time
+from timeit import default_timer as timer
 from contextlib import redirect_stdout
 from io import StringIO
 import numpy as np
@@ -113,9 +113,9 @@ def timing(
     def _decorator(func):
         @wraps(func)
         def wrapper(self, *args, **kwargs):
-            t1 = time.time()
+            t1 = timer()
             output = func(self, *args, **kwargs)
-            t2 = time.time()
+            t2 = timer()
 
             log_level = _get_log_level(
                 level, console_log_level, log_file_name, log_file_path

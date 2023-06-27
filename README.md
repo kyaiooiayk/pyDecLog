@@ -145,6 +145,7 @@ for key, value in func.locals.items():
 - [Decorators with parameters?](https://stackoverflow.com/questions/5929107/decorators-with-parameters)
 - [How to expose persistent local variables? Part#1](https://code.activestate.com/recipes/577283-decorator-to-expose-local-variables-of-a-function-/)
 - [How to expose persistent local variables? Part#2](https://stackoverflow.com/questions/9186395/python-is-there-a-way-to-get-a-local-function-variable-from-within-a-decorator)
+- [How to time your code](https://stackoverflow.com/questions/17579357/time-time-vs-timeit-timeit)
 ***
 
 ## 📝Changelog
