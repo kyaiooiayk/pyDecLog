@@ -45,7 +45,6 @@ def lprint(
     )
     return logger_obj
 
-
 def _get_time(t_start: float, t_end: float, unit: str):
     """Get elapsed time given the unit.
 
