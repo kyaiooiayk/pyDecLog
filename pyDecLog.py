@@ -113,16 +113,16 @@ def timing(
     def _decorator(func):
         @wraps(func)
         def wrapper(self, *args, **kwargs):
-            t1 = timer()
+            time_start = timer()
             output = func(self, *args, **kwargs)
-            t2 = timer()
+            time_end = timer()
 
             log_level = _get_log_level(
                 level, console_log_level, log_file_name, log_file_path
             )
 
             log_level(
-                f"{str(func.__name__)} was executed in: {str(_get_time(t1, t2, unit))} {unit}"
+                f"{str(func.__name__)} was executed in: {str(_get_time(time_start, time_end, unit))} {unit}"
             )
             return output
 
