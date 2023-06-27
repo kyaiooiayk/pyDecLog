@@ -53,7 +53,7 @@ def workflow():
 if __name__ == "__main__":
     workflow()
 ```
-- Upin execution the following is printed on console:
+- Upon execution the following is printed on console:
 ```shell
 Workflow starts!
 Workflow ends!
