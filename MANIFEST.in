@@ -1,0 +1,2 @@
+include *.md, VERSION, dev_requirements.txt
+include requirements.txt
