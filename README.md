@@ -94,15 +94,15 @@ Workflow ends!
 ***
 
 ## 🎨Available decorators
-- `@comment`: log all the print statements inside a decorated function
-- `@timing`: log the function elapsed time
+- `@comment`: log all function's inner print statements
+- `@timing`: log function's elapsed time
 - `@signature`: log function's signature
 - `@arguments`: log function's args and kwargs
-- `@message`: log the function's print statements
+- `@message`: log function's print statements
 - `@typing`: log function's args, kwargs and output type
-- `@memory`: log function's args, kwargs and output their memory usage
+- `@memory`: log function's args, kwargs and output memory usage
 - `@description`: log function's output from the `__doc__` dunder method
-- `@profile_local`: log function's local persistent variables.
+- `@profile_local`: log function's local persistent variables
 ***
 
 ## 🪄Features
