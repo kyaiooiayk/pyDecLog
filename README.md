@@ -2,9 +2,6 @@
 
 ![PyPI Version](https://img.shields.io/pypi/v/pyDecLog.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/pyDecLog.svg)
-
-![PyPI pyversions](https://img.shields.io/pypi/pyversions/pyDecLog.svg)]
-
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pyDecLog)
 ![License](https://img.shields.io/pypi/l/pyDecLog)
 
