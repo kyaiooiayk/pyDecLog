@@ -4,9 +4,6 @@
 ![Python Version](https://img.shields.io/pypi/pyversions/pyDecLog.svg)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pyDecLog)
 ![License](https://img.shields.io/pypi/l/pyDecLog)
-![Stars](https://img.shields.io/github/stars/SnowballSH/pyDecLog)
-![Issues](https://img.shields.io/github/issues/SnowballSH/pyDecLog)
-![Forks](https://img.shields.io/github/forks/SnowballSH/pyDecLog)
 
 pyDecLog: a simple and easy to use Python module for logging via decorators.
 ***
