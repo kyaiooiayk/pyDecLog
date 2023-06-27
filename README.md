@@ -1,5 +1,5 @@
 # pyDecLog
-pyDecLog: a simple and easy to use Python package for logging via decorators.
+pyDecLog: a simple and easy to use Python module for logging via decorators.
 ***
 
 ## 🚀Quick start
