@@ -114,27 +114,28 @@ Workflow ends!
   - `INFO`
   - `DEBUG`
 - Can control where logging messages are piped: to log file or both log file and console. When controlling the message at the console level the following hierarchy is enforced:
-  ```
-    CRITICAL : 50
-    ERROR    : 40
-    WARNING  : 30
-    INFO     : 20
-    DEBUG    : 10
-    NOTSET   : 0
-  ```
+```
+CRITICAL : 50
+ERROR    : 40
+WARNING  : 30
+INFO     : 20
+DEBUG    : 10
+NOTSET   : 0
+```
 - Can add comments directly to log file even outside a function.
 ***
 
 ## ⚠️Known issues
-- `@profile_locals` does not write to the log file. Its output needs to be piped separately to the log. See the following example:
+- `@profile_locals` does not write to the log file. Its output needs to be piped separately to the LOG.log file. See the following example:
 ```python
 from pyDecLog import profile_locals as profile
 from pyDecLog import lprint
+from pympler.asizeof import asizeof
 
 @profile
-def func():
-    local1 = 1
-    local2 = 2
+def func(x):
+    local_1 = 1
+    local_2 = 2
     return 1
 
 func()
@@ -143,6 +144,12 @@ for key, value in func.locals.items():
     msg = f"Variable: {key} | value: {value} | type: {type(value)} | size: {asizeof(value)}"
 
     lprint(console_log_level="debug").debug(msg)
+```
+- The following `LOG.log` is the written:
+```shell
+2023/06/28 | 07:04:52 | DEBUG Variable: x | value: 1 | type: <class 'int'> | size: 32
+2023/06/28 | 07:04:52 | DEBUG Variable: local_1 | value: 1 | type: <class 'int'> | size: 32
+2023/06/28 | 07:04:52 | DEBUG Variable: local_2 | value: 2 | type: <class 'int'> | size: 32
 ```
 ***
 
