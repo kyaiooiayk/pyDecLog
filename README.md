@@ -165,7 +165,7 @@ for key, value in func.locals.items():
 ***
 
 ## 📝Changelog
-- `0.1.4`  first release (26/06/23).
+- `0.1.6`  first release (26/06/23).
 ***
 
 ## 📝To-do
