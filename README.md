@@ -80,7 +80,7 @@ Workflow ends!
 
 ## ⚙️Installation
 - Create your own virtual environment and run `pip install -r requirements.txt`
-- Via pip: `pip install pyDecLog`   
+- Via pip: `pip install pyDecLog`
 ***
 
 ## 🔗Dependencies
@@ -94,15 +94,17 @@ Workflow ends!
 ***
 
 ## 🎨Available decorators
-- `@comment`: log all function's inner print statements
-- `@timing`: log function's elapsed time
-- `@signature`: log function's signature
 - `@arguments`: log function's args and kwargs
-- `@message`: log function's print statements
-- `@typing`: log function's args, kwargs and output type
-- `@memory`: log function's args, kwargs and output memory usage
+- `@comment`: log all function's inner print statements
 - `@description`: log function's output from the `__doc__` dunder method
+- `@machine`: log machine OS system and hardware
+- `@memory`: log function's args, kwargs and output memory usage
+- `@message`: log function's print statements
 - `@profile_locals`: log function's local persistent variables
+- `@signature`: log function's signature
+- `@timing`: log function's elapsed time
+- `@typing`: log function's args, kwargs and output type
+- `@user`: log user info
 ***
 
 ## 🪄Features
@@ -165,7 +167,8 @@ for key, value in func.locals.items():
 ***
 
 ## 📝Changelog
-- `0.1.6`  first release (26/06/23).
+- `0.1.6` - First release (26/06/23).
+- `0.1.7` - Added `@machine` and  `@user` (29/06/23).
 ***
 
 ## 📝To-do

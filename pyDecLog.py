@@ -9,7 +9,8 @@ import inspect
 from sys import getsizeof
 import sys
 from pympler.asizeof import asizeof
-
+import psutil
+import platform
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_PATH = "./"
@@ -44,6 +45,7 @@ def lprint(
         log_file_path=log_file_path,
     )
     return logger_obj
+
 
 def _get_time(t_start: float, t_end: float, unit: str):
     """Get elapsed time given the unit.
@@ -581,6 +583,116 @@ class profile_locals:
     @property
     def locals(self):
         return self._locals
+
+
+def machine(
+    func_: None = None,
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
+):
+    """Profile local machine hardware.
+
+    Parameters
+    ----------
+    func_ : None, optional
+        Wrapped function, by default None
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug"
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
+
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
+    """
+
+    def _decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
+
+            log_level(f"Platform: {platform.platform()}")
+            log_level(f"System: {platform.system()}")
+            log_level(f"Release: {platform.release()}")
+            log_level(f"Version: {platform.version()}")
+            log_level(f"No LOGICAL CPUs? {psutil.cpu_count(logical=True)}")
+            log_level(f"No PHYSICAL CPUs? {psutil.cpu_count(logical=False)}")
+            log_level(f"RAM {psutil.virtual_memory().total/1.e9} [Gb]")
+
+            # Call the decorated function
+            output = func(*args, **kwargs)
+
+            return output
+
+        return wrapper
+
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
+
+
+def user(
+    func_: None = None,
+    level: str = "debug",
+    console_log_level: str = CONSOLE_LOG_LEVEL,
+    log_file_name: str = LOG_FILE_NAME,
+    log_file_path: str = LOG_FILE_PATH,
+):
+    """Profile local machine hardware.
+
+    Parameters
+    ----------
+    func_ : None, optional
+        Wrapped function, by default None
+    level : str, optional
+        Log level: "debug", "info", "critical" or "error", by default "debug"
+    console_log_level : str, optional
+        Console log level. Same options as log level, by default CONSOLE_LOG_LEVEL.
+    log_file_name : str, optional
+        Name of the log file, by default LOG_FILE_NAME.
+    log_file_path : str, optional
+        Path of the log file, by default LOG_FILE_PATH.
+
+    Raises
+    ------
+    RunTimeWarning
+        Raise if called with positional arguments.
+    """
+
+    def _decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            log_level = _get_log_level(
+                level, console_log_level, log_file_name, log_file_path
+            )
+
+            log_level(f"User: {os.getlogin()}")
+
+            # Call the decorated function
+            output = func(*args, **kwargs)
+
+            return output
+
+        return wrapper
+
+    if callable(func_):
+        return _decorator(func_)
+    elif func_ is None:
+        return _decorator
+    else:
+        raise RuntimeWarning("Positional arguments are not supported!")
 
 
 def get_logger(
