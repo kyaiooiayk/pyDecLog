@@ -40,9 +40,7 @@ class TestUser(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("User:") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("User:") != -1)
 
         self.addCleanup(os.remove, "./LOG.log")
 
@@ -64,9 +62,7 @@ class TestUser(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("INFO User:") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("INFO User:") != -1)
 
         self.addCleanup(os.remove, "./LOG.log")
 

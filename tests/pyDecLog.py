@@ -6,12 +6,16 @@ __license__ = "MIT"
 __version__ = "0.1.7"
 
 
-from functools import wraps, partial
+from functools import wraps
 import logging
 import os
 from timeit import default_timer as timer
 from contextlib import redirect_stdout
 from io import StringIO
+from typing import Union
+from typing import Callable
+from typing import TypeVar
+from typing import Any
 import numpy as np
 import inspect
 from sys import getsizeof
@@ -23,6 +27,8 @@ import platform
 LOG_FILE_NAME = "LOG"
 LOG_FILE_PATH = "./"
 CONSOLE_LOG_LEVEL = "critical"
+
+F = TypeVar("F", bound=Callable[..., Any])
 
 
 def lprint(
@@ -55,7 +61,9 @@ def lprint(
     return logger_obj
 
 
-def _get_time(t_start: float, t_end: float, unit: str):
+def _get_time(
+    t_start: float, t_end: float, unit: str
+) -> Union[float, TypeError]:
     """Get elapsed time given the unit.
 
     Parameters
@@ -96,7 +104,7 @@ def timing(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Wrap function with execution time.
 
     Parameters
@@ -152,7 +160,7 @@ def message(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Collect and pip all functions calls.
 
     Parameters
@@ -203,7 +211,7 @@ def message(
 
 def _get_log_level(
     level: str, console_log_level: str, log_file_name: str, log_file_path: str
-):
+) -> Union[Callable[[str], Any], TypeError]:
     """Return Logger object given a log level.
 
     Parameters
@@ -257,7 +265,7 @@ def signature(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Get function signature.
 
     Parameters
@@ -305,7 +313,7 @@ def arguments(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Get args and kwargs.
 
     Parameters
@@ -356,7 +364,7 @@ def description(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Describe function by pulling __doc__ string.
 
     Parameters
@@ -403,7 +411,7 @@ def description(
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def _get_mem(unit: str, value: float):
+def _get_mem(unit: str, value: float) -> Union[float, TypeError]:
     """Get memory formatting given the unit.
 
     Parameters
@@ -438,7 +446,7 @@ def memory(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Profile local variables memory.
 
     Parameters
@@ -509,7 +517,7 @@ def typing(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Profile local variable type.
 
     Parameters
@@ -599,7 +607,7 @@ def machine(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Profile local machine hardware.
 
     Parameters
@@ -657,7 +665,7 @@ def user(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Union[Callable[[F], F], RuntimeWarning]:
     """Profile local machine hardware.
 
     Parameters
@@ -707,7 +715,7 @@ def get_logger(
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
     console_log_level: str = CONSOLE_LOG_LEVEL,
-):
+) -> Callable[[F], F]:
     """Creates a Log File and returns Logger object.
 
     Parameters

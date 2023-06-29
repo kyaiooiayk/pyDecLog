@@ -40,24 +40,16 @@ class TestMachine(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("Platform:") != -1
-        )
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("System:") != -1
-        )
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("Version:") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("Platform:") != -1)
+        self.assertTrue(open("./LOG.log", "r").read().find("System:") != -1)
+        self.assertTrue(open("./LOG.log", "r").read().find("Version:") != -1)
         self.assertTrue(
             open("./LOG.log", "r").read().find("No LOGICAL CPUs?") != -1
-        )        
+        )
         self.assertTrue(
             open("./LOG.log", "r").read().find("No PHYSICAL CPUs?") != -1
-        )        
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("RAM") != -1
-        )        
+        )
+        self.assertTrue(open("./LOG.log", "r").read().find("RAM") != -1)
 
         self.addCleanup(os.remove, "./LOG.log")
 
@@ -67,9 +59,7 @@ class TestMachine(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("CRITICAL") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("CRITICAL") != -1)
         self.addCleanup(os.remove, "./LOG.log")
 
     def test_log_INFO_file(self):
@@ -79,9 +69,7 @@ class TestMachine(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("INFO") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("INFO") != -1)
         self.addCleanup(os.remove, "./LOG.log")
 
     def test_log_DEBUG_file(self):
@@ -91,9 +79,7 @@ class TestMachine(unittest.TestCase):
             return x
 
         dummy(1)
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("DEBUG") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("DEBUG") != -1)
         self.addCleanup(os.remove, "./LOG.log")
 
     def test_log_ERROR_file(self):
@@ -104,9 +90,7 @@ class TestMachine(unittest.TestCase):
 
         dummy(1)
 
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("ERROR") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("ERROR") != -1)
 
         self.addCleanup(os.remove, "./LOG.log")
 
@@ -118,9 +102,7 @@ class TestMachine(unittest.TestCase):
 
         dummy(1)
 
-        self.assertTrue(
-            open("./LOG.log", "r").read().find("WARNING") != -1
-        )
+        self.assertTrue(open("./LOG.log", "r").read().find("WARNING") != -1)
 
         self.addCleanup(os.remove, "./LOG.log")
 
