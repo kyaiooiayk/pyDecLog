@@ -3,6 +3,7 @@
 ![PyPI Version](https://img.shields.io/pypi/v/pyDecLog.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/pyDecLog.svg)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pyDecLog)
+[![HitCount](https://hits.dwyl.com/kyaiooiayk/pyDecLog.svg)](https://hits.dwyl.com/kyaiooiayk/pyDecLog)
 ![License](https://img.shields.io/pypi/l/pyDecLog)
 ![Stars](https://img.shields.io/github/stars/kyaiooiayk/pyDecLog)
 ![Issues](https://img.shields.io/github/issues/kyaiooiayk/pyDecLog)
