@@ -102,7 +102,7 @@ Workflow ends!
 - `@typing`: log function's args, kwargs and output type
 - `@memory`: log function's args, kwargs and output memory usage
 - `@description`: log function's output from the `__doc__` dunder method
-- `@profile_local`: log function's local persistent variables
+- `@profile_locals`: log function's local persistent variables
 ***
 
 ## 🪄Features
