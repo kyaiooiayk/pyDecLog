@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+
+__title__ = "pyDecLog"
+__author__ = "kyaiooiayk"
+__license__ = "MIT"
+__version__ = "0.1.7"
+
+
 from functools import wraps, partial
 import logging
 import os
