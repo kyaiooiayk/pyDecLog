@@ -8,7 +8,7 @@ import numpy as np
 from pympler.asizeof import asizeof
 
 
-class TestlGetMemorySize(unittest.TestCase):
+class TestlGetMemory(unittest.TestCase):
     def test_get_mem_BYTES(self):
 
         a = ["a"] * 1000

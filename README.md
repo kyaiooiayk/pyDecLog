@@ -75,7 +75,7 @@ Workflow ends!
 
 ## 🚀Useful for
 - Keep track of Python pipelines.
-- Log info about a function during development both on python script or jupyter notebook.
+- Log info about a function during development both via Python script or Jupyter Notebook.
 ***
 
 ## ⚙️Installation

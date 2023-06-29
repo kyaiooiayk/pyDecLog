@@ -6,7 +6,7 @@ import sys
 import shutil
 
 
-class TestMessage(unittest.TestCase):
+class TestDescription(unittest.TestCase):
     def test_same_function_return(self):
         @desc
         def dummy(x):

@@ -7,7 +7,7 @@ import shutil
 import numpy as np
 
 
-class TestlPrint(unittest.TestCase):
+class TestGetTime(unittest.TestCase):
     def test_get_time_SEC(self):
 
         elapsed_time = _get_time(1, 3, "sec")

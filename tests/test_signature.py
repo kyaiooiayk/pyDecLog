@@ -6,7 +6,7 @@ import sys
 import shutil
 
 
-class TestTiming(unittest.TestCase):
+class TestSignature(unittest.TestCase):
     def test_same_function_return(self):
         @sign
         def dummy(x):

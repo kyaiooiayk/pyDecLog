@@ -6,7 +6,7 @@ import sys
 import shutil
 
 
-class TestTiming(unittest.TestCase):
+class TestArguments(unittest.TestCase):
     def test_same_function_return(self):
         @args
         def dummy(x):
