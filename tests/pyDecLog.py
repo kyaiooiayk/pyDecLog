@@ -35,7 +35,7 @@ def lprint(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> Callable[[F], F]:
     """Log print (lprint).
 
     Parameters
@@ -577,7 +577,7 @@ def typing(
 class profile_locals:
     """Profile persistent local variables."""
 
-    def __init__(self, func):
+    def __init__(self, func) -> None:
         self._locals = {}
         self.func = func
 
@@ -597,7 +597,7 @@ class profile_locals:
         return res
 
     @property
-    def locals(self):
+    def locals(self) -> dict[..., Any]:
         return self._locals
 
 

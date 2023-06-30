@@ -16,11 +16,13 @@ from typing import Union
 from typing import Callable
 from typing import TypeVar
 from typing import Any
+from typing import Tuple
+from typing import Dict
 import numpy as np
 import inspect
 from sys import getsizeof
 import sys
-from pympler.asizeof import asizeof
+from pympler.asizeof import asizeof # type: ignore
 import psutil
 import platform
 
@@ -35,7 +37,7 @@ def lprint(
     console_log_level: str = CONSOLE_LOG_LEVEL,
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
-):
+) -> logging.Logger:
     """Log print (lprint).
 
     Parameters
@@ -411,7 +413,7 @@ def description(
         raise RuntimeWarning("Positional arguments are not supported!")
 
 
-def _get_mem(unit: str, value: float) -> Union[float, TypeError]:
+def _get_mem(unit: str, value: float) -> Union[Tuple[float, str], TypeError]:
     """Get memory formatting given the unit.
 
     Parameters
@@ -577,11 +579,11 @@ def typing(
 class profile_locals:
     """Profile persistent local variables."""
 
-    def __init__(self, func):
-        self._locals = {}
+    def __init__(self, func) -> None:
+        self._locals: Dict[str, Any] = {}
         self.func = func
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs) -> Any:
         def tracer(frame, event, arg):
             if event == "return":
                 self._locals = frame.f_locals.copy()
@@ -597,7 +599,7 @@ class profile_locals:
         return res
 
     @property
-    def locals(self):
+    def locals(self) -> Dict[str, Any]:
         return self._locals
 
 
@@ -715,7 +717,7 @@ def get_logger(
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
     console_log_level: str = CONSOLE_LOG_LEVEL,
-) -> Callable[[F], F]:
+)-> logging.Logger:
     """Creates a Log File and returns Logger object.
 
     Parameters
@@ -772,4 +774,4 @@ def get_logger(
     # Add the handler to the root logger
     logger.addHandler(console)
 
-    return logger
+    return logger 
