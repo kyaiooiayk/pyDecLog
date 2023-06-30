@@ -22,7 +22,7 @@ import numpy as np
 import inspect
 from sys import getsizeof
 import sys
-from pympler.asizeof import asizeof # type: ignore
+from pympler.asizeof import asizeof  # type: ignore
 import psutil
 import platform
 
@@ -717,7 +717,7 @@ def get_logger(
     log_file_name: str = LOG_FILE_NAME,
     log_file_path: str = LOG_FILE_PATH,
     console_log_level: str = CONSOLE_LOG_LEVEL,
-)-> logging.Logger:
+) -> logging.Logger:
     """Creates a Log File and returns Logger object.
 
     Parameters
@@ -774,4 +774,4 @@ def get_logger(
     # Add the handler to the root logger
     logger.addHandler(console)
 
-    return logger 
+    return logger

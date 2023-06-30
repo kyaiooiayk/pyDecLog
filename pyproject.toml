@@ -14,3 +14,9 @@ exclude = '''
   | dist
 )/
 '''
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = false
+disallow_untyped_defs = false
+exclude = ['tests', 'examples', 'build']
