@@ -1,10 +1,6 @@
 from pyDecLog import _get_time
 import unittest
-from unittest.mock import MagicMock
-import os
-import sys
-import shutil
-import numpy as np
+from numpy.testing import assert_array_almost_equal
 
 
 class TestGetTime(unittest.TestCase):
@@ -17,13 +13,13 @@ class TestGetTime(unittest.TestCase):
 
         elapsed_time = _get_time(1, 3, "min")
 
-        np.testing.assert_array_almost_equal(elapsed_time, 2 / 60, decimal=3)
+        assert_array_almost_equal(elapsed_time, 2 / 60, decimal=3)
 
     def test_get_time_HR(self):
 
         elapsed_time = _get_time(1, 3, "hr")
 
-        np.testing.assert_array_almost_equal(elapsed_time, 2 / 3660, decimal=3)
+        assert_array_almost_equal(elapsed_time, 2 / 3660, decimal=3)
 
     def test_raise_type_error(self):
 

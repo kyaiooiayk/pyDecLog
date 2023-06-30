@@ -1,11 +1,7 @@
 from pyDecLog import _get_log_level
 from pyDecLog import get_logger
 import unittest
-from unittest.mock import MagicMock
 import os
-import sys
-import shutil
-import numpy as np
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_PATH = "./"

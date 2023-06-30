@@ -1,8 +1,6 @@
 from pyDecLog import typing as typ
 import unittest
-from unittest.mock import MagicMock
 import os
-import sys
 import shutil
 
 

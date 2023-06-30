@@ -1,10 +1,5 @@
 from pyDecLog import profile_locals as profile
 import unittest
-from unittest.mock import MagicMock
-import os
-import sys
-import shutil
-
 
 class TestProfileLocals(unittest.TestCase):
     def test_same_function_return(self):
