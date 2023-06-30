@@ -1,6 +1,7 @@
 from pyDecLog import profile_locals as profile
 import unittest
 
+
 class TestProfileLocals(unittest.TestCase):
     def test_same_function_return(self):
         @profile
