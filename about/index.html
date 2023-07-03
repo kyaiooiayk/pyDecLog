@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>About - pyDecLog</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "About";
+        var mkdocs_page_input_path = "about.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pyDecLog
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">About</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#useful-for">🚀Useful for</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#available-decorators">🎨Available decorators</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">🪄Features</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pyDecLog</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>About</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pydeclog">pyDecLog</h1>
+<p><img alt="PyPI Version" src="https://img.shields.io/pypi/v/pyDecLog.svg" />
+<img alt="Python Version" src="https://img.shields.io/pypi/pyversions/pyDecLog.svg" />
+<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/pyDecLog" />
+<a href="https://hits.dwyl.com/kyaiooiayk/pyDecLog"><img alt="HitCount" src="https://hits.dwyl.com/kyaiooiayk/pyDecLog.svg" /></a>
+<img alt="License" src="https://img.shields.io/pypi/l/pyDecLog" />
+<img alt="Stars" src="https://img.shields.io/github/stars/kyaiooiayk/pyDecLog" />
+<img alt="Issues" src="https://img.shields.io/github/issues/kyaiooiayk/pyDecLog" />
+<img alt="Forks" src="https://img.shields.io/github/forks/kyaiooiayk/pyDecLog" />
+<a href="https://codecov.io/gh/kyaiooiayk/pyDecLog"><img alt="codecov" src="https://codecov.io/gh/kyaiooiayk/pyDecLog/branch/main/graph/badge.svg?token=H28KHYYFHX" /></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
+<p>pyDecLog: a simple and easy to use Python module for logging via decorators.</p>
+<hr />
+<h2 id="useful-for">🚀Useful for</h2>
+<ul>
+<li>Keep track of Python pipelines.</li>
+<li>Log info about a function during development both via Python script or Jupyter Notebook.</li>
+</ul>
+<hr />
+<h2 id="available-decorators">🎨Available decorators</h2>
+<ul>
+<li><code>@arguments</code>: log function's args and kwargs</li>
+<li><code>@comment</code>: log all function's inner print statements</li>
+<li><code>@description</code>: log function's output from the <code>__doc__</code> dunder method</li>
+<li><code>@machine</code>: log machine OS system and hardware</li>
+<li><code>@memory</code>: log function's args, kwargs and output memory usage</li>
+<li><code>@message</code>: log function's print statements</li>
+<li><code>@profile_locals</code>: log function's local persistent variables</li>
+<li><code>@signature</code>: log function's signature</li>
+<li><code>@timing</code>: log function's elapsed time</li>
+<li><code>@typing</code>: log function's args, kwargs and output type</li>
+<li><code>@user</code>: log user info</li>
+</ul>
+<hr />
+<h2 id="features">🪄Features</h2>
+<ul>
+<li>Mix and match the decorators you want.</li>
+<li>Can control logging levels as a whole or individually. Choose from the following:<ul>
+<li><code>CRITICAL</code></li>
+<li><code>ERROR</code></li>
+<li><code>WARNING</code></li>
+<li><code>INFO</code></li>
+<li><code>DEBUG</code></li>
+</ul>
+</li>
+<li>Can control where logging messages are piped: to log file or both log file and console. When controlling the message at the console level the following hierarchy is enforced:</li>
+</ul>
+<pre><code>CRITICAL : 50
+ERROR    : 40
+WARNING  : 30
+INFO     : 20
+DEBUG    : 10
+NOTSET   : 0
+</code></pre>
+<ul>
+<li>Can add comments directly to log file even outside a function.</li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation/" class="btn btn-neutral float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
