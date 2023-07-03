@@ -17,15 +17,13 @@ pyDecLog: a simple and easy to use Python module for logging via decorators.
 ## 🚀Quick start
 - Say we have the following workflow
 ```python
-from pyDecLog import arguments as arg
-from pyDecLog import signature as sign
-from pyDecLog import message as mes
-from pyDecLog import timing as tim
+from pyDecLog import arguments
+from pyDecLog import signature
+from pyDecLog import message
+from pyDecLog import timing
 from pyDecLog import lprint
-from pyDecLog import description as doc
-from pyDecLog import memory as mem
+from pyDecLog import description
 import time
-import sys
 
 def workflow():
 
@@ -33,11 +31,11 @@ def workflow():
     lprint(console_log_level="info").info("Workflow starts!")
 
     # Decorate function as needed
-    @doc
-    @sign
-    @arg
-    @tim
-    @mes
+    @doscription
+    @signature
+    @arguments
+    @timing
+    @message
     def sum_two_int(first, second=2):
         """Sum two numbers."""
 
