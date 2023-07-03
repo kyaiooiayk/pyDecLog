@@ -1,6 +1,15 @@
 site_name: pyDecLog
+site_description: A python module for logging via decorators.
+site_author: kyaiooiayk
+
 nav:
   - About: about.md
   - Installation: installation.md
   - Quickstart: quickstart.md
-theme: readthedocs
+
+theme:
+  name: readthedocs
+
+  # Static files
+  static_templates:
+    - 404.html
