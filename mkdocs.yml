@@ -1,0 +1,6 @@
+site_name: pyDecLog
+nav:
+  - About: about.md
+  - Installation: installation.md
+  - Quickstart: quickstart.md
+theme: readthedocs
