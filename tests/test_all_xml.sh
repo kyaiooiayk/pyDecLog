@@ -1,4 +1,4 @@
-cp ../pyDecLog.py .
+cp ./pyDecLog.py ./tests
 python -m coverage run -m unittest
 python -m coverage report
 python -m coverage xml
