@@ -11,7 +11,7 @@ jobs:
       - name: Install pyDecLog
         run: pip install pyDecLog
       - name: Run tests and collect coverage
-        working-directory: ./../tests
+        working-directory: ../tests
         run: |
           pwd
           cd ..
