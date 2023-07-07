@@ -16,4 +16,5 @@ jobs:
           pwd
           python -m coverage run -m unittest
           python -m coverage report
+          echo "message"
           python -m coverage xml
