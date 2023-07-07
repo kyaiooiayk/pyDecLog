@@ -15,6 +15,7 @@ jobs:
           pwd
           cd ..
           pwd
+          ls -l
           cp pyDecLog.py tests
           cd ../tests
           python -m coverage run -m unittest
