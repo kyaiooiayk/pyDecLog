@@ -13,8 +13,8 @@ jobs:
       - name: Run tests and collect coverage
         run: |
           pwd
-          cp pyDecLog.py tests
-          cd tests
+          cp ../pyDecLog.py tests
+          cd ../tests
           python -m coverage run -m unittest
           python -m coverage report
           python -m coverage xml
