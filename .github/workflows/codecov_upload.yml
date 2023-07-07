@@ -13,7 +13,7 @@ jobs:
       - name: Run tests and collect coverage
         run: |
           pwd
-          cd ..
+          cd ../tests
           pwd
           python -m coverage run -m unittest
           python -m coverage report
