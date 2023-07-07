@@ -2,7 +2,7 @@ name: Workflow for Codecov Action
 on: [push, pull_request]
 
 jobs:
-  Covergae:
+  Coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,6 +12,7 @@ jobs:
         run: pip install pyDecLog
       - name: Run tests and collect coverage
         run: |
+          pwd
           cp pyDecLog.py tests
           cd tests
           python -m coverage run -m unittest
