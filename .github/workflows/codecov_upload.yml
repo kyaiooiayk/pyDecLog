@@ -8,6 +8,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install requirements
         run: pip install -r requirements_dev.txt
+      - name: Install pyDecLog
+        run: pip install pyDecLog
       - name: Run tests and collect coverage
         run: |
           cd tests
