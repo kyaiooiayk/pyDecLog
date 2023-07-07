@@ -12,7 +12,7 @@ jobs:
         run: pip install pyDecLog
       - name: Run tests and collect coverage
         run: |
-          cp ./pyDecLog.py tests/
+          cp pyDecLog.py tests
           cd tests
           python -m coverage run -m unittest
           python -m coverage report
