@@ -23,4 +23,4 @@ jobs:
           # Options are `alpine`, `linux`, `macos`, `windows`
           curl -Os https://uploader.codecov.io/latest/macos/codecov
           chmod +x coverage
-          ./codeverage -t ${CODECOV_TOKEN}
+          coverage -t ${CODECOV_TOKEN}
