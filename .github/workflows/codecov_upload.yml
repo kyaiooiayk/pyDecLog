@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Upload coverage reports to Codecov!
-        uses: tests/codecov-action@v3
+        uses: codecov-action@v3
