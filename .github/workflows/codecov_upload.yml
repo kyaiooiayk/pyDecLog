@@ -5,5 +5,7 @@ jobs:
   Covergae:
     runs-on: ubuntu-latest
     steps:
+      - name:  Install requirements
+        run: pip install -r requirements_dev.txt
       - name: Upload coverage reports to Codecov!!
         uses: codecov/codecov-action@v3
