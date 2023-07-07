@@ -1,0 +1,9 @@
+name: Workflow for Codecov Action
+on: [push, pull_request]
+
+jobs:
+  Covergae:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload coverage reports to Codecov!
+        uses: test/codecov-action@v3
