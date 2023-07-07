@@ -16,5 +16,11 @@ jobs:
           pwd
           python -m coverage run -m unittest
           python -m coverage report
-          echo "message"
           python -m coverage xml
+      - name: Upload coverage reports to Codecov
+        run: |
+          # Replace `linux` below with the appropriate OS
+          # Options are `alpine`, `linux`, `macos`, `windows`
+          curl -Os https://uploader.codecov.io/latest/macos/codecov
+          chmod +x coverage
+          ./codeverage -t ${CODECOV_TOKEN}
