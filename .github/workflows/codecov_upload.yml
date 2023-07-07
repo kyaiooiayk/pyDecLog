@@ -14,10 +14,6 @@ jobs:
         working-directory: ./tests
         run: |
           pwd
-          cd ..
-          pwd
-          cd tests
-          pwd
           python -m coverage run -m unittest
           python -m coverage report
           python -m coverage xml
