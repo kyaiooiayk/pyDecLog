@@ -5,3 +5,4 @@ mypy>=1.4.1
 pympler>=1.0.1
 numpy>=1.21.6
 coverage>=7.2.7
+psutil>=5.9.5
