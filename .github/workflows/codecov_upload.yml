@@ -22,5 +22,5 @@ jobs:
           # Replace `linux` below with the appropriate OS
           # Options are `alpine`, `linux`, `macos`, `windows`
           curl -Os https://uploader.codecov.io/latest/macos/codecov
-          chmod +x coverage.xml
-          coverage.xml -t ${CODECOV_TOKEN}
+          #chmod +x coverage.xml
+          #coverage.xml -t ${CODECOV_TOKEN}
