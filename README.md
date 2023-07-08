@@ -8,7 +8,8 @@
 ![Stars](https://img.shields.io/github/stars/kyaiooiayk/pyDecLog)
 ![Issues](https://img.shields.io/github/issues/kyaiooiayk/pyDecLog)
 ![Forks](https://img.shields.io/github/forks/kyaiooiayk/pyDecLog)
-[![codecov](https://codecov.io/gh/kyaiooiayk/pyDecLog/branch/main/graph/badge.svg?token=H28KHYYFHX)](https://codecov.io/gh/kyaiooiayk/pyDecLog)
+[![codecov](https://codecov.io/gh/kyaiooiayk/pyDecLog/branch/main/graph/badge.svg?token=FU80PXXRRI)](https://codecov.io/gh/kyaiooiayk/pyDecLog)
+
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 pyDecLog: a simple and easy to use Python module for logging via decorators.
