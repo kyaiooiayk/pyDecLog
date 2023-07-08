@@ -18,9 +18,5 @@ jobs:
           python -m coverage report
           python -m coverage xml
       - name: Upload coverage reports to Codecov
-        run: |
-          # Replace `linux` below with the appropriate OS
-          # Options are `alpine`, `linux`, `macos`, `windows`
-          curl -Os https://uploader.codecov.io/latest/macos/codecov
-          #chmod +x coverage.xml
-          #coverage.xml -t ${CODECOV_TOKEN}
+        uses: codecov/codecov-action@v3
+          #env: CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
