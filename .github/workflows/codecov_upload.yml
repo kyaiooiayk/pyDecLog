@@ -5,18 +5,7 @@ jobs:
   Coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install requirements
-        run: pip install -r requirements_dev.txt
-      - name: Install pyDecLog
-        run: pip install pyDecLog
-      - name: Run tests and collect coverage
-        working-directory: ./tests
-        run: |
-          pwd
-          python -m coverage run -m unittest
-          python -m coverage report
-          python -m coverage xml
+      - name: Checkout repo
+        uses: actions/checkout@v3
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
-          #env: CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
