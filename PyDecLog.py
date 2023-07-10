@@ -18,13 +18,14 @@ from typing import TypeVar
 from typing import Any
 from typing import Tuple
 from typing import Dict
-import numpy as np
-import inspect
-from sys import getsizeof
 import sys
+from sys import getsizeof
+import platform
+import inspect
+import numpy as np
 from pympler.asizeof import asizeof  # type: ignore
 import psutil
-import platform
+
 
 LOG_FILE_NAME = "LOG"
 LOG_FILE_PATH = "./"
@@ -187,7 +188,6 @@ def message(
     def _decorator(func):
         @wraps(func)
         def wrapper(self, *args, **kwargs):
-
             s = StringIO()
             with redirect_stdout(s):
                 output = func(self, *args, **kwargs)
@@ -336,7 +336,6 @@ def arguments(
     def _decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-
             log_level = _get_log_level(
                 level, console_log_level, log_file_name, log_file_path
             )
@@ -556,7 +555,7 @@ def typing(
                 log_level(f"Argument's type: {type(arg)}")
 
             # Check size of keyword arguments
-            for key, value in kwargs.items():
+            for key, _ in kwargs.items():
                 log_level(f"Size of keyword argument '{type(key)}")
 
             # Call the decorated function
